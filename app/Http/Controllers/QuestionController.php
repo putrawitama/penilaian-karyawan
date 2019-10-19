@@ -14,7 +14,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        return view('question.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        return view('question.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        return view('question.view');
     }
 
     /**
@@ -57,7 +57,7 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        return view('question.edit');
     }
 
     /**

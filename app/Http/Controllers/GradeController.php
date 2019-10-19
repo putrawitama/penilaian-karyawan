@@ -14,7 +14,7 @@ class GradeController extends Controller
      */
     public function index()
     {
-        //
+        return view('grade.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class GradeController extends Controller
      */
     public function create()
     {
-        //
+        return view('grade.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class GradeController extends Controller
      */
     public function show(Grade $grade)
     {
-        //
+        return view('grade.view');
     }
 
     /**
@@ -57,7 +57,7 @@ class GradeController extends Controller
      */
     public function edit(Grade $grade)
     {
-        //
+        return view('grade.edit');
     }
 
     /**

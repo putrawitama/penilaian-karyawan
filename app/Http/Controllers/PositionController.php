@@ -14,7 +14,7 @@ class PositionController extends Controller
      */
     public function index()
     {
-        //
+        return view('position.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('position.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class PositionController extends Controller
      */
     public function show(Position $position)
     {
-        //
+        return view('position.view');
     }
 
     /**
@@ -57,7 +57,7 @@ class PositionController extends Controller
      */
     public function edit(Position $position)
     {
-        //
+        return view('position.edit');
     }
 
     /**
