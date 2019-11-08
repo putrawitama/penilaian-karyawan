@@ -15,7 +15,14 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('nip');
+            $table->string('name');
+            $table->date('tmt');
+            $table->string('penempatan');
+            $table->boolean('is_organic');
+            $table->unsignedBigInteger('grade_id');
             $table->timestamps();
+            $table->foreign('grade_id')->references('id')->on('grades');
         });
     }
 

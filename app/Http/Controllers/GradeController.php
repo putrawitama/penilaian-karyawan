@@ -14,7 +14,10 @@ class GradeController extends Controller
      */
     public function index()
     {
-        return view('grade.index');
+        $data = [
+            'grade' => Grade::all()
+        ];
+        return view('grade.index', $data);
     }
 
     /**
@@ -35,7 +38,13 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $grade = new Grade;
+        $grade->title = $request->title;
+        $grade->grade = $request->grade;
+
+        $grade->save();
+
+        return redirect()->route('grade');
     }
 
     /**
@@ -44,9 +53,12 @@ class GradeController extends Controller
      * @param  \App\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function show(Grade $grade)
+    public function show($id)
     {
-        return view('grade.view');
+        $data = [
+            'grade' => Grade::find($id)
+        ];
+        return view('grade.view', $data);
     }
 
     /**
@@ -57,7 +69,11 @@ class GradeController extends Controller
      */
     public function edit(Grade $grade)
     {
-        return view('grade.edit');
+        $data = [
+            'grade' => Grade::find($id)
+        ];
+
+        return view('grade.edit', $data);
     }
 
     /**
@@ -67,9 +83,15 @@ class GradeController extends Controller
      * @param  \App\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Grade $grade)
+    public function update($id, Request $request)
     {
-        //
+        $grade = Grade::find($id);
+        $grade->title = $request->title;
+        $grade->grade = $request->grade;
+
+        $grade->save();
+
+        return redirect()->route('grade');
     }
 
     /**
@@ -78,8 +100,8 @@ class GradeController extends Controller
      * @param  \App\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Grade $grade)
+    public function destroy($id)
     {
-        //
+        Grade::delete($id);
     }
 }

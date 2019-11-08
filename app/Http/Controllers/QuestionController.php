@@ -14,7 +14,11 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return view('question.index');
+        $data = [
+            'question' => Question::all()
+        ];
+
+        return view('question.index', $data);
     }
 
     /**
@@ -35,7 +39,14 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $question = new Question;
+        $question->number = $request->number;
+        $question->body = $request->body;
+        $question->score = $request->score;
+
+        $question->save();
+
+        return redirect()->route('question');
     }
 
     /**
@@ -44,9 +55,12 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show($id)
     {
-        return view('question.view');
+        $data = [
+            'question' => Question::find($id)
+        ];
+        return view('question.view', $data);
     }
 
     /**
@@ -55,9 +69,12 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit($id)
     {
-        return view('question.edit');
+        $data = [
+            'question' => Question::find($id)
+        ];
+        return view('question.edit', $data);
     }
 
     /**
@@ -67,9 +84,16 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update($id, Request $request)
     {
-        //
+        $question = Question::find($id);
+        $question->number = $request->number;
+        $question->body = $request->body;
+        $question->score = $request->score;
+
+        $question->save();
+
+        return redirect()->route('question');
     }
 
     /**
@@ -80,6 +104,8 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        Question::delete($id);
+
+        return redirect()->route('question');
     }
 }

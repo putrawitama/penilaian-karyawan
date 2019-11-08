@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\Grade;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -24,7 +25,10 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employee.create');
+        $data = [
+            'grades' => Grade::all()
+        ];
+        return view('employee.create', $data);
     }
 
     /**
@@ -35,7 +39,17 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $employee = new Employee;
+        $employee->nip = $request->nip;
+        $employee->name = $request->name;
+        $employee->tmt = $request->tmt;
+        $employee->penempatan = $request->penempatan;
+        $employee->is_organic = $request->is_organic;
+        $employee->grade_id = $request->grade_id;
+
+        $employee->save();
+
+        return redirect()->route('employee');
     }
 
     /**
@@ -44,9 +58,13 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
-        return view('employee.view');
+        $data = [
+            'employee' = Employee::find($id)
+        ];
+
+        return view('employee.view', $data);
     }
 
     /**
@@ -55,9 +73,13 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        return view('employee.edit');
+        $data = [
+            'employee' = Employee::find($id)
+        ];
+
+        return view('employee.edit', $data);
     }
 
     /**
@@ -67,9 +89,17 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update($id, Request $request)
     {
-        //
+        $employee = Employee::find($id);
+        $employee->nip = $request->nip;
+        $employee->name = $request->name;
+        $employee->tmt = $request->tmt;
+        $employee->penempatan = $request->penempatan;
+        $employee->is_organic = $request->is_organic;
+        $employee->grade_id = $request->grade_id;
+
+        $employee->save();
     }
 
     /**
@@ -78,8 +108,10 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
+        Employee::delete($id);
+
+        return redirect()->route('employee');
     }
 }
