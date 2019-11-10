@@ -44,6 +44,12 @@
           <span>Question</span></a>
       </li>
 
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ route ('assessment') }}">
+          <i class="fas fa-fw fa-signal"></i>
+          <span>Assessment</span></a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

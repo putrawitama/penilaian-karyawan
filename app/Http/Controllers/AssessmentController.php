@@ -14,7 +14,7 @@ class AssessmentController extends Controller
      */
     public function index()
     {
-        //
+        return view('assessment.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class AssessmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('assessment.create');
     }
 
     /**
