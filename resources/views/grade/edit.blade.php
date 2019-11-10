@@ -19,15 +19,15 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
-								<form>
-
+								<form action="{{ route('update-grade', ['id' => $grade->id]) }}" method="POST">
+								@csrf
 									<div class="form-group">
 										<label>Grade</label>
-						                <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Grade" value="A">
+										<input type="number" name="grade" class="form-control form-control-user" placeholder="Grade" value="{{ $grade->grade }}">
 									</div>
 									<div class="form-group">
-										<label>Description</label><br>
-						                <textarea class="form-control form-control-user" rows="6" placeholder="Description">This grade is Amazing</textarea>
+										<label>Title</label>
+										<input type="text" name="title" class="form-control form-control-user" placeholder="Title" value="{{ $grade->title }}">
 									</div>
 
 									<button class="btn btn-success btn-user" type="submit">Save</button>

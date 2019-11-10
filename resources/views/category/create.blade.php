@@ -13,21 +13,17 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
-						<h6 class="m-0 font-weight-bold text-primary">Create Grade</h6>
+						<h6 class="m-0 font-weight-bold text-primary">Create Category</h6>
 					</div>
 
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
-								<form action="{{ route('store-grade') }}" method="POST">
+								<form action="{{ route('store-category') }}" method="POST">
 								@csrf
 									<div class="form-group">
-										<label>Grade</label>
-						                <input type="number" name="grade" class="form-control form-control-user" placeholder="Grade">
-									</div>
-									<div class="form-group">
-										<label>Title</label>
-						                <input type="text" name="title" class="form-control form-control-user" placeholder="Title">
+										<label>Category</label>
+						                <input type="text" name="title" class="form-control form-control-user" placeholder="Category">
 									</div>
 
 									<button class="btn btn-success btn-user" type="submit">Save</button>

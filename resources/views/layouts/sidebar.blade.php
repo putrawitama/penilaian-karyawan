@@ -33,9 +33,9 @@
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="{{ route ('position') }}">
+        <a class="nav-link" href="{{ route ('category') }}">
           <i class="fas fa-fw fa-briefcase"></i>
-          <span>Position</span></a>
+          <span>Category</span></a>
       </li>
 
       <li class="nav-item active">

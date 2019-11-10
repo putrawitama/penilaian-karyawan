@@ -15,7 +15,7 @@ class GradeController extends Controller
     public function index()
     {
         $data = [
-            'grade' => Grade::all()
+            'grades' => Grade::all()
         ];
         return view('grade.index', $data);
     }
@@ -56,7 +56,7 @@ class GradeController extends Controller
     public function show($id)
     {
         $data = [
-            'grade' => Grade::find($id)
+            'grade' => Grade::findOrFail($id)
         ];
         return view('grade.view', $data);
     }
@@ -67,10 +67,10 @@ class GradeController extends Controller
      * @param  \App\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function edit(Grade $grade)
+    public function edit($id)
     {
         $data = [
-            'grade' => Grade::find($id)
+            'grade' => Grade::findOrFail($id)
         ];
 
         return view('grade.edit', $data);
@@ -85,7 +85,7 @@ class GradeController extends Controller
      */
     public function update($id, Request $request)
     {
-        $grade = Grade::find($id);
+        $grade = Grade::findOrFail($id);
         $grade->title = $request->title;
         $grade->grade = $request->grade;
 
@@ -100,8 +100,11 @@ class GradeController extends Controller
      * @param  \App\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        Grade::delete($id);
+        $grade = Grade::findOrFail($id);
+        $grade->delete();
+
+        return redirect()->route('grade');
     }
 }

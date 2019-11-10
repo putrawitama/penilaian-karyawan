@@ -16,8 +16,6 @@ class CreateAssesmentsTable extends Migration
         Schema::create('assesments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('point', 1);
-            $table->text('body');
-            $table->boolean('correct')->default(false);
             $table->unsignedBigInteger('question_id');
             $table->unsignedBigInteger('answer_id');
             $table->timestamps();

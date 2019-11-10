@@ -20,22 +20,18 @@
 							<div class="row">
 								<div class="col-md-2">
 									<p>Grade</p>
-									<p>Description</p>
-								</div>
-								<div class="col-md-1">
-									<p>:</p>
-									<p>:</p>
+									<p>Title</p>
 								</div>
 								<div class="col-md-9">
-									<p>A</p>
-									<p>This grade is amazing</p>
+									<p>{{ $grade->grade }}</p>
+									<p>{{ $grade->title }}</p>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<a href="{{ route ('edit-grade') }}" class="btn btn-warning">Update</a>
-					<a href="" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</a>
+					<a href="{{ route ('edit-grade', ['id' => $grade->id]) }}" class="btn btn-warning">Update</a>
+					<a href="{{ route ('delete-grade', ['id' => $grade->id]) }}" class="btn btn-danger">Delete</a>
 					<a href="{{ route ('grade') }}" class="btn btn-info">Back</a>
 
 				</div>
@@ -45,7 +41,7 @@
 </div>
 
 <!-- Modal Delete -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -61,5 +57,5 @@
         </div>
       </div>
     </div>
-</div>
+</div> -->
 @endsection

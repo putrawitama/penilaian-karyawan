@@ -19,58 +19,54 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
-								<form>
+								<form action="{{ route('store-employee') }}" method="POST">
+									@csrf
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Name</label>
-								                <input type="text" class="form-control form-control-user" placeholder="Name">
+								                <input type="text" name="name" class="form-control form-control-user" placeholder="Name">
 											</div>
 											<div class="form-group">
 												<label>NIP</label>
-								                <input type="number" class="form-control form-control-user" placeholder="NIP">
-											</div>
-											<div class="form-group">
-												<label>Job Title / Kotak Jabatan</label>
-								                <input type="text" class="form-control form-control-user" placeholder="Job Title / Kotak Jabatan">
+								                <input type="number" name="nip" class="form-control form-control-user" placeholder="NIP">
 											</div>
 											<div class="form-group">
 												<label>Job Grade</label>
-								                <input type="text" class="form-control form-control-user" placeholder="Job Grade">
+								                <select class="form-control" name="grade_id">
+													<option value="">Pilih Grade</option>
+													@foreach($grades as $value)
+														<option value="{{ $value->id }}">{{ $value->grade }} - {{ $value->title }}</option>
+													@endforeach
+												</select>
 											</div>
 											<div class="form-group">
-												<label>Jumlah</label>
-								                <input type="number" class="form-control form-control-user" placeholder="Jumlah">
+												<label>T.M.T</label>
+								                <input type="date" name="tmt" class="form-control form-control-user" placeholder="T.M.T">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Person Grade</label>
-								                <input type="email" class="form-control form-control-user" placeholder="Person Grade">
-											</div>
-											<div class="form-group">
-												<label>Corp. Title</label>
-								                <input type="number" class="form-control form-control-user" placeholder="Corp. Title">
-											</div>
-											<div class="form-group">
-												<label>T.M.T</label>
-								                <input type="date" class="form-control form-control-user" placeholder="T.M.T">
+												<label>Jabatan</label>
+								                <input type="text" name="jabatan" class="form-control form-control-user" placeholder="Jabatan">
 											</div>
 											<div class="form-group">
 												<label>Dasar Penempatan Terkini</label>
-								                <input type="text" class="form-control form-control-user" placeholder="Dasar Penempatan Terkini">
+								                <input type="text" name="penempatan" class="form-control form-control-user" placeholder="Dasar Penempatan Terkini">
 											</div>
 											<div class="form-group">
 												<label>No. (memo/SK KC atau HCD)</label>
-								                <input type="text" class="form-control form-control-user" placeholder="No. (memo/SK KC atau HCD)">
+								                <input type="text" name="memo" class="form-control form-control-user" placeholder="No. (memo/SK KC atau HCD)">
+											</div>
+											<div class="form-group">
+												<label>Organic</label>
+								                <select class="form-control" name="is_organic">
+													<option value="1">Organic</option>
+													<option value="0">Non Organic</option>
+												</select>
 											</div>
 										</div>
 									</div>
-
-									<div class="form-group">
-                                        <label>Keterangan</label><br>
-                                        <textarea class="form-control form-control-user" rows="6" placeholder="Keterangan"></textarea>
-                                    </div>
 
 									<button class="btn btn-success btn-user" type="submit">Save</button>
 									<a href="{{ route ('employee') }}" class="btn btn-danger btn-user">Cancel</a>

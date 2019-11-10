@@ -1,41 +1,37 @@
 @extends('layouts.index')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-left">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">Question</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Category</h6>
                 </div>
 
                 <div class="card-body">
                 	<div>
-                		<a class="btn btn-success" href="{{ route ('create-question') }}">Create Question</a>
+                		<a class="btn btn-success" href="{{ route ('create-grade') }}">Create Category</a>
                 	</div>
                 	<br>
                 	<div class="table-responsive">
                 		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 			<thead>
                 				<tr>
-                					<th>Question</th>
-                					<th>Score</th>
+                					<th>Tilte</th>
                 					<th class="text-center">Action</th>
                 				</tr>
                 			</thead>
                 			<tbody>
-                                @foreach($question as $value)
+                                @foreach($category as $value)
                 				<tr>
-                					<td>{{ $value->body }}</td>
-                					<td>{{ $value->score }}</td>
+                					<td>{{ $value->grade }}</td>
                 					<td class="text-center">
-                                        <a href="{{ route ('view-question', ['id' => $value->id]) }}" class="btn btn-info btn-circle btn-sm">
+                                        <a href="{{ route ('view-category', ['id' => $value->id]) }}" class="btn btn-info btn-circle btn-sm">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a href="{{ route ('edit-question', ['id' => $value->id]) }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="{{ route ('delete-question', ['id' => $value->id]) }}" class="btn btn-danger btn-circle btn-sm">
+                                        <a href="{{ route ('delete-category', ['id' => $value->id]) }}" class="btn btn-danger btn-circle btn-sm">
                                             <i class="fas fa-trash"></i>
                                         </a>               
                                     </td>

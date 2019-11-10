@@ -19,7 +19,9 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
             $table->date('tmt');
             $table->string('penempatan');
+            $table->string('jabatan');
             $table->boolean('is_organic');
+            $table->string('memo');
             $table->unsignedBigInteger('grade_id');
             $table->timestamps();
             $table->foreign('grade_id')->references('id')->on('grades');

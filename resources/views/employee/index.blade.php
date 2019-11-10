@@ -19,45 +19,39 @@
                 			<thead>
                 				<tr>
                 					<th>Name</th>
-                					<th>Job Title</th>
-                					<th>Corp Title</th>
                 					<th>NIP</th>
+                					<th>Job Grade</th>
                 					<th>T.M.T</th>
+                					<th>No. (memo/SK KC atau HCD)</th>
+                					<th>Organic</th>
                 					<th class="text-center">Action</th>
                 				</tr>
                 			</thead>
-                			<tfoot>
-                				<tr>
-                                    <th>Name</th>
-                                    <th>Job Title</th>
-                                    <th>Corp Title</th>
-                                    <th>NIP</th>
-                                    <th>T.M.T</th>
-                                    <th class="text-center">Action</th>
-                                </tr>
-                			</tfoot>
                 			<tbody>
-                				<tr>
-                					<td>Tiger Nixon</td>
-                					<td>System Architect</td>
-                					<td>Edinburgh</td>
-                					<td>61</td>
-                					<td>2011/04/25</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-employee') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-employee') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
+                                @foreach($employees as $value)
+                                    <tr>
+                                        <td>{{ $value->name }}</td>
+                                        <td>{{ $value->nip }}</td>
+                                        <td>{{ $value->grade->title }}</td>
+                                        <td>{{ $value->tmt }}</td>
+                                        <td>{{ $value->memo }}</td>
+                                        <td>{{ $value->is_organic == 1 ? 'Organic' : 'Non Organic' }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route ('view-employee', ['id' => $value->id]) }}" class="btn btn-info btn-circle btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route ('edit-employee', ['id' => $value->id]) }}" class="btn btn-warning btn-circle btn-sm">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                            <a href="{{ route ('delete-employee', ['id' => $value->id]) }}" class="btn btn-danger btn-circle btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                            </a>               
+                                        </td>
+                                    </tr>
+                                @endforeach
 
                                 <!-- Modal Delete -->
-                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                       <div class="modal-content">
                                         <div class="modal-header">
@@ -73,7 +67,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                </div>
+                                </div> -->
                 			</tbody>
                 		</table>
                 	</div>

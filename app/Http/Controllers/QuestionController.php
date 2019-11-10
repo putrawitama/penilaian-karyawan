@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Question;
+use App\Category;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -28,7 +29,11 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('question.create');
+        $data = [
+            'categories' => Category::all()
+        ];
+
+        return view('question.create', $data);
     }
 
     /**
@@ -42,6 +47,7 @@ class QuestionController extends Controller
         $question = new Question;
         $question->number = $request->number;
         $question->body = $request->body;
+        $question->category_id = $request->category_id;
         $question->score = $request->score;
 
         $question->save();
@@ -58,7 +64,7 @@ class QuestionController extends Controller
     public function show($id)
     {
         $data = [
-            'question' => Question::find($id)
+            'question' => Question::findOrFail($id)
         ];
         return view('question.view', $data);
     }
@@ -72,7 +78,7 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $data = [
-            'question' => Question::find($id)
+            'question' => Question::findOrFail($id)
         ];
         return view('question.edit', $data);
     }
@@ -86,9 +92,10 @@ class QuestionController extends Controller
      */
     public function update($id, Request $request)
     {
-        $question = Question::find($id);
+        $question = Question::findOrFail($id);
         $question->number = $request->number;
         $question->body = $request->body;
+        $question->category_id = $request->category_id;
         $question->score = $request->score;
 
         $question->save();
@@ -104,7 +111,7 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        Question::delete($id);
+        Question::findOrFail($id);
 
         return redirect()->route('question');
     }

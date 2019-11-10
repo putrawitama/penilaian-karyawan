@@ -15,7 +15,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employee.index');
+        $data = [
+            'employees' => Employee::all()
+        ];
+        return view('employee.index', $data);
     }
 
     /**
@@ -43,6 +46,8 @@ class EmployeeController extends Controller
         $employee->nip = $request->nip;
         $employee->name = $request->name;
         $employee->tmt = $request->tmt;
+        $employee->memo = $request->memo;
+        $employee->jabatan = $request->jabatan;
         $employee->penempatan = $request->penempatan;
         $employee->is_organic = $request->is_organic;
         $employee->grade_id = $request->grade_id;
@@ -61,7 +66,7 @@ class EmployeeController extends Controller
     public function show($id)
     {
         $data = [
-            'employee' = Employee::find($id)
+            'employee' => Employee::findOrFail($id)
         ];
 
         return view('employee.view', $data);
@@ -76,7 +81,8 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $data = [
-            'employee' = Employee::find($id)
+            'employee' => Employee::findOrFail($id),
+            'grade' => Grade::all()
         ];
 
         return view('employee.edit', $data);
@@ -91,15 +97,18 @@ class EmployeeController extends Controller
      */
     public function update($id, Request $request)
     {
-        $employee = Employee::find($id);
+        $employee = Employee::findOrFail($id);
         $employee->nip = $request->nip;
         $employee->name = $request->name;
         $employee->tmt = $request->tmt;
+        $employee->memo = $request->memo;
+        $employee->jabatan = $request->jabatan;
         $employee->penempatan = $request->penempatan;
         $employee->is_organic = $request->is_organic;
         $employee->grade_id = $request->grade_id;
 
         $employee->save();
+        return redirect()->route('employee');
     }
 
     /**
@@ -108,10 +117,11 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        Employee::delete($id);
-
+        $employee = Employee::findOrFail($id);
+        $employee->delete();
+        
         return redirect()->route('employee');
     }
 }

@@ -20,246 +20,32 @@
                 			<thead>
                 				<tr>
                 					<th>Grade</th>
-                					<th>Description</th>
+                					<th>Tilte</th>
                 					<th class="text-center">Action</th>
                 				</tr>
                 			</thead>
-                			<tfoot>
-                				<tr>
-                					<th>Grade</th>
-                					<th>Description</th>
-                					<th class="text-center">Action</th>
-                				</tr>
-                			</tfoot>
                 			<tbody>
+                                @foreach($grades as $value)
                 				<tr>
-                					<td>System Architect</td>
-                					<td>Edinburgh</td>
+                					<td>{{ $value->grade }}</td>
+                					<td>{{ $value->title }}</td>
                 					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
+                                        <a href="{{ route ('view-grade', ['id' => $value->id]) }}" class="btn btn-info btn-circle btn-sm">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
+                                        <a href="{{ route ('edit-grade', ['id' => $value->id]) }}" class="btn btn-warning btn-circle btn-sm">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
+                                        <a href="{{ route ('delete-grade', ['id' => $value->id]) }}" class="btn btn-danger btn-circle btn-sm">
                                             <i class="fas fa-trash"></i>
                                         </a>               
                                     </td>
                 				</tr>
-                				<tr>
-                					<td>Accountant</td>
-                					<td>Tokyo</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Junior Technical Author</td>
-                					<td>San Francisco</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Senior Javascript Developer</td>
-                					<td>Edinburgh</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Accountant</td>
-                					<td>Tokyo</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Integration Specialist</td>
-                					<td>New York</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Sales Assistant</td>
-                					<td>San Francisco</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Integration Specialist</td>
-                					<td>Tokyo</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Javascript Developer</td>
-                					<td>San Francisco</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Software Engineer</td>
-                					<td>Edinburgh</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Office Manager</td>
-                					<td>London</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Support Lead</td>
-                					<td>Support Lead</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Regional Director</td>
-                					<td>Regional Director</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Senior Marketing Designer</td>
-                					<td>Senior Marketing Designer</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
-                				<tr>
-                					<td>Regional Director</td>
-                					<td>Regional Director</td>
-                					<td class="text-center">
-                                        <a href="{{ route ('view-grade') }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route ('edit-grade') }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash"></i>
-                                        </a>               
-                                    </td>
-                				</tr>
+                                @endforeach
+                				
 
                                 <!-- Modal Delete -->
-                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                       <div class="modal-content">
                                         <div class="modal-header">
@@ -275,7 +61,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                </div>
+                                </div> -->
                 			</tbody>
                 		</table>
                 	</div>
