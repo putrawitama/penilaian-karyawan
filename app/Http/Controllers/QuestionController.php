@@ -45,7 +45,6 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $question = new Question;
-        $question->number = $request->number;
         $question->body = $request->body;
         $question->category_id = $request->category_id;
         $question->score = $request->score;
@@ -78,7 +77,8 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $data = [
-            'question' => Question::findOrFail($id)
+            'question' => Question::findOrFail($id),
+            'categories' => Category::all()
         ];
         return view('question.edit', $data);
     }
@@ -93,7 +93,6 @@ class QuestionController extends Controller
     public function update($id, Request $request)
     {
         $question = Question::findOrFail($id);
-        $question->number = $request->number;
         $question->body = $request->body;
         $question->category_id = $request->category_id;
         $question->score = $request->score;
@@ -109,9 +108,10 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function delete($id)
     {
-        Question::findOrFail($id);
+        $question = Question::findOrFail($id);
+        $question->delete();
 
         return redirect()->route('question');
     }

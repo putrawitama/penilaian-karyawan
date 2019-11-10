@@ -18,6 +18,7 @@
                 		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 			<thead>
                 				<tr>
+                					<th>Category</th>
                 					<th>Question</th>
                 					<th>Score</th>
                 					<th class="text-center">Action</th>
@@ -26,12 +27,10 @@
                 			<tbody>
                                 @foreach($question as $value)
                 				<tr>
+                					<td>{{ $value->category->title }}</td>
                 					<td>{{ $value->body }}</td>
                 					<td>{{ $value->score }}</td>
                 					<td class="text-center">
-                                        <a href="{{ route ('view-question', ['id' => $value->id]) }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
                                         <a href="{{ route ('edit-question', ['id' => $value->id]) }}" class="btn btn-warning btn-circle btn-sm">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>

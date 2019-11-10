@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\Grade;
+use App\Answer;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -66,7 +67,8 @@ class EmployeeController extends Controller
     public function show($id)
     {
         $data = [
-            'employee' => Employee::findOrFail($id)
+            'employee' => Employee::findOrFail($id),
+            'answer' => Answer::where('employee_id', $id)->get()
         ];
 
         return view('employee.view', $data);

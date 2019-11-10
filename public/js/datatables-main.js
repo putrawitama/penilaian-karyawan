@@ -4,5 +4,5 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  $('#dataTable_applicants').DataTable();
+  $('#dataTable_hasil').DataTable();
 });

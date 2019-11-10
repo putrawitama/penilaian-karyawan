@@ -10,6 +10,10 @@ class Answer extends Model
         return $this->belongsTo('App\Employee');
     }
 
+    public function category(){
+        return $this->belongsTo('App\Category');
+    }
+
     public function assesment(){
         return $this->hasMany('App\Assesment');
     }

@@ -20,6 +20,7 @@
                 				<tr>
                 					<th>Name</th>
                 					<th>NIP</th>
+                					<th>Job Title</th>
                 					<th>Job Grade</th>
                 					<th>T.M.T</th>
                 					<th>No. (memo/SK KC atau HCD)</th>
@@ -32,7 +33,8 @@
                                     <tr>
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->nip }}</td>
-                                        <td>{{ $value->grade->title }}</td>
+                                        <td>{{ $value->jabatan }}</td>
+                                        <td>{{ $value->grade->grade }}</td>
                                         <td>{{ $value->tmt }}</td>
                                         <td>{{ $value->memo }}</td>
                                         <td>{{ $value->is_organic == 1 ? 'Organic' : 'Non Organic' }}</td>

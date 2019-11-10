@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Assessment;
+use App\Assesment;
+use App\Employee;
+use App\Answer;
+use App\Category;
 use Illuminate\Http\Request;
 
 class AssessmentController extends Controller
@@ -14,7 +17,10 @@ class AssessmentController extends Controller
      */
     public function index()
     {
-        return view('assessment.index');
+        $data = [
+            'employee' => Employee::all()
+        ];
+        return view('assessment.index', $data);
     }
 
     /**
@@ -22,9 +28,13 @@ class AssessmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('assessment.create');
+        $data = [
+            'employee' => Employee::findOrFail($id),
+            'category' => Category::all()
+        ];
+        return view('assessment.create', $data);
     }
 
     /**
@@ -33,9 +43,35 @@ class AssessmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
-        //
+
+        $employee = Employee::findOrFail($id);
+        $category = Category::findOrFail($request->category_id);
+        $answer = new Answer;
+        $answer->score = 0;
+        $answer->finished = 0;
+        $answer->category_id = $category->id;
+        $answer->employee_id = $employee->id;
+        $answer->save();
+
+        $score = 0;
+
+        foreach ($request->jawaban as $key => $value) {
+            $assessment = new Assesment;
+            $assessment->point = $value;
+            $assessment->question_id = $key;
+            $assessment->answer_id = $answer->id;
+            $assessment->save();
+
+            $score+=$value;
+        }
+
+        $answer->score = $score;
+        $answer->save();
+
+        return redirect()->route('assessment');
+
     }
 
     /**
@@ -44,42 +80,4 @@ class AssessmentController extends Controller
      * @param  \App\Assessment  $assessment
      * @return \Illuminate\Http\Response
      */
-    public function show(Assessment $assessment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Assessment  $assessment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Assessment $assessment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Assessment  $assessment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Assessment $assessment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Assessment  $assessment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Assessment $assessment)
-    {
-        //
-    }
 }

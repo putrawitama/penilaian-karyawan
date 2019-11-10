@@ -18,7 +18,9 @@ Route::get('/', function () {
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+// Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('/logout', 'HomeController@logout')->name('logout');
 
 // Route::get('/logout', 'UserController@logout')->name('logout');
 Route::middleware('auth')->group(function(){
@@ -40,16 +42,21 @@ Route::middleware('auth')->group(function(){
     Route::post('/grade/update/{id}', 'GradeController@update')->name('update-grade');
     Route::get('/grade/delete/{id}', 'GradeController@delete')->name('delete-grade');
 
-    Route::get('/category', 'PositionController@index')->name('category');
-    Route::get('/category/create', 'PositionController@create')->name('create-category');
-    Route::get('/category/delete/{id}', 'PositionController@delete')->name('delete-category');
+    Route::get('/category', 'CategoryController@index')->name('category');
+    Route::get('/category/create', 'CategoryController@create')->name('create-category');
+    Route::post('/category/store', 'CategoryController@store')->name('store-category');
+    Route::get('/category/delete/{id}', 'CategoryController@delete')->name('delete-category');
 
     Route::get('/question', 'QuestionController@index')->name('question');
     Route::get('/question/create', 'QuestionController@create')->name('create-question');
+    Route::post('/question/store', 'QuestionController@store')->name('store-question');
     Route::get('/question/view', 'QuestionController@show')->name('view-question');
-    Route::get('/question/edit', 'QuestionController@edit')->name('edit-question');
+    Route::get('/question/edit/{id}', 'QuestionController@edit')->name('edit-question');
+    Route::post('/question/update/{id}', 'QuestionController@update')->name('update-question');
+    Route::get('/question/delete/{id}', 'QuestionController@delete')->name('delete-question');
 
     Route::get('/assessment', 'AssessmentController@index')->name('assessment');
-    Route::get('/assessment/create', 'AssessmentController@create')->name('create-assessment');
+    Route::get('/assessment/create/{id}', 'AssessmentController@create')->name('create-assessment');
+    Route::post('/assessment/store/{id}', 'AssessmentController@store')->name('store-assessment');
 });
 

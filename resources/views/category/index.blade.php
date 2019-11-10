@@ -12,7 +12,7 @@
 
                 <div class="card-body">
                 	<div>
-                		<a class="btn btn-success" href="{{ route ('create-grade') }}">Create Category</a>
+                		<a class="btn btn-success" href="{{ route ('create-category') }}">Create Category</a>
                 	</div>
                 	<br>
                 	<div class="table-responsive">
@@ -26,11 +26,8 @@
                 			<tbody>
                                 @foreach($category as $value)
                 				<tr>
-                					<td>{{ $value->grade }}</td>
+                					<td>{{ $value->title }}</td>
                 					<td class="text-center">
-                                        <a href="{{ route ('view-category', ['id' => $value->id]) }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
                                         <a href="{{ route ('delete-category', ['id' => $value->id]) }}" class="btn btn-danger btn-circle btn-sm">
                                             <i class="fas fa-trash"></i>
                                         </a>               

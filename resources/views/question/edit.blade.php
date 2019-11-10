@@ -19,16 +19,25 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <form>
-
-                                    <div class="form-group">
-                                        <label>Answer</label>
-                                        <textarea class="form-control form-control-user" rows="6" placeholder="Answer">What Is A Programmer ?</textarea>
-                                    </div>
+                                <form action="{{ route('edit-question', ['id' => $question->id]) }}" method="POST">
+                                @csrf
                                     <div class="form-group">
                                         <label>Question</label><br>
-                                        <textarea class="form-control form-control-user" rows="6" placeholder="Question">A programmer is an individual that writes/creates computer software or applications by giving the computer specific programming instructions.</textarea>
+                                        <textarea name="body" class="form-control form-control-user" rows="6" placeholder="Question">{{ $question->body }}</textarea>
                                     </div>
+                                    <div class="form-group">
+                                        <label>Rating</label>
+                                        <input type="text" name="score" class="form-control form-control-user" placeholder="Rating" value="{{ $question->score }}"/>
+                                    </div>
+                                    <div class="form-group">
+										<label>Category</label>
+								        <select class="form-control" name="category_id">
+											<option value="">Pilih Category</option>
+											@foreach($categories as $value)
+												<option value="{{ $value->id }}" {{ $value->id == $question->categories_id ? 'selected="selected"' : '' }}>{{ $value->grade }} - {{ $value->title }}</option>
+											@endforeach
+										</select>
+									</div>
 
                                     <button class="btn btn-success btn-user" type="submit">Save</button>
                                     <a href="{{ route ('question') }}" class="btn btn-danger btn-user">Cancel</a>

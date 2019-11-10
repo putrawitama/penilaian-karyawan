@@ -17,8 +17,10 @@ class CreateAnswersTable extends Migration
             $table->bigIncrements('id');
             $table->boolean('finished')->default(false);
             $table->unsignedSmallInteger('score')->nullable();
-            $table->unsignedBigInteger('employees_id');
-            $table->foreign('employees_id')->references('id')->on('employees');
+            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

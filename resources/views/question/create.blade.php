@@ -31,8 +31,8 @@
                                     </div>
                                     <div class="form-group">
 										<label>Category</label>
-								        <select class="form-control" name="grade_id">
-											<option value="">Choose Category</option>
+								        <select class="form-control" name="category_id">
+											<option value="">Pilih Category</option>
 											@foreach($categories as $value)
 												<option value="{{ $value->id }}">{{ $value->title }}</option>
 											@endforeach
