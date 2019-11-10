@@ -33,3 +33,5 @@ Route::get('/question', 'QuestionController@index')->name('question');
 Route::get('/question/create', 'QuestionController@create')->name('create-question');
 Route::get('/question/view', 'QuestionController@show')->name('view-question');
 Route::get('/question/edit', 'QuestionController@edit')->name('edit-question');
+Route::get('/assessment', 'AssessmentController@index')->name('assessment');
+Route::get('/assessment/create', 'AssessmentController@create')->name('create-assessment');
